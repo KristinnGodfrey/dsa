@@ -3,6 +3,7 @@ package com.kristinngodfrey.dsa
 class LinkedListIterator<T : Any>(
     private val list: LinkedList<T>
 ) : Iterator<T>, MutableIterator<T>{
+
     private var index = 0
     private var lastNode: Node<T>? = null
 
@@ -22,5 +23,20 @@ class LinkedListIterator<T : Any>(
         // 3
         index++
         return lastNode!!.value
+    }
+
+    // remove last node and adjust prevNode
+    override fun remove() {
+        // 1
+        if (index == 1) {
+            list.pop()
+        } else {
+            // 2
+            val prevNode = list.nodeAt(index - 2) ?: return
+            // 3
+            list.removeAfter(prevNode)
+            lastNode = prevNode
+        }
+        index--
     }
 }

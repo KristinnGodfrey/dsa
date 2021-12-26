@@ -1,6 +1,6 @@
 package com.kristinngodfrey.dsa
 
-class LinkedList<T : Any> : Iterable<T>, Collection<T> {
+class LinkedList<T : Any> : Iterable<T>, Collection<T>, MutableIterable<T> {
     private var head: Node<T>? = null
     private var tail: Node<T>? = null
     override var size = 0
@@ -104,7 +104,7 @@ class LinkedList<T : Any> : Iterable<T>, Collection<T> {
         return result
     }
 
-    override fun iterator(): Iterator<T> =
+    override fun iterator(): MutableIterator<T> =
         LinkedListIterator(this)
 
     override fun contains(element: T): Boolean {
