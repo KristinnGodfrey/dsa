@@ -10,7 +10,7 @@ class TestLinkedList {
     }
 
     @Test
-    fun testCreatingAndLinkingNodes(){
+    fun createAndLinkNodes(){
         val node1 = Node(value = 1)
         val node2 = Node(value = 2)
         val node3 = Node(value = 3)
@@ -20,14 +20,14 @@ class TestLinkedList {
     }
 
     @Test
-    fun testPushNodes() {
+    fun pushNodes() {
         val list = LinkedList<Int>()
         list.push(3).push(2).push(1)
         assert(list.toString() == "1 -> 2 -> 3")
     }
 
     @Test
-    fun testAppendNodes() {
+    fun appendNodes() {
         val list = LinkedList<Int>()
         list.append(1)
         list.append(2)
@@ -36,7 +36,7 @@ class TestLinkedList {
     }
 
     @Test
-    fun testInsertNodesAt() {
+    fun insertNodesAt() {
         assert(testLinkedList.toString() == "1 -> 2 -> 3") // before
         var middleNode = testLinkedList.nodeAt(1)!!
         for (i in 1..3) {
@@ -46,7 +46,7 @@ class TestLinkedList {
     }
 
     @Test
-    fun testPopNode() {
+    fun popNode() {
         assert(testLinkedList.toString() == "1 -> 2 -> 3") // before
         val poppedValue = testLinkedList.pop()
         assert(testLinkedList.toString() == "2 -> 3") // after
@@ -54,19 +54,15 @@ class TestLinkedList {
     }
 
     @Test
-    fun testRemoveLastNode() {
-        val list = LinkedList<Int>()
-        list.push(3) // keeping this to test pushing to the list
-        list.push(2)
-        list.push(1)
-        assert(list.toString() == "1 -> 2 -> 3") // before
-        val removedValue = list.removeLast()
-        assert(list.toString() == "1 -> 2") // after
+    fun removeLastNode() {
+        assert(testLinkedList.toString() == "1 -> 2 -> 3") // before
+        val removedValue = testLinkedList.removeLast()
+        assert(testLinkedList.toString() == "1 -> 2") // after
         assert(removedValue == 3) // popped value
     }
 
     @Test
-    fun testRemoveNodeAfter() {
+    fun removeNodeAfter() {
         assert(testLinkedList.toString() == "1 -> 2 -> 3") // before
         val removedValue = testLinkedList.removeAfter(testLinkedList.nodeAt(0)!!)
         assert(testLinkedList.toString() == "1 -> 3") // after
@@ -74,14 +70,14 @@ class TestLinkedList {
     }
 
     @Test
-    fun testIterableLinkedList() {
+    fun iterableLinkedList() {
         for (item in testLinkedList) {
             continue // I just need to test iterating over the list
         }
     }
 
     @Test
-    fun testLinkedListContains() {
+    fun linkedListContains() {
         assert(testLinkedList.toString() == "1 -> 2 -> 3") // before
         assert(testLinkedList.contains(1))
         assert(testLinkedList.contains(2))
@@ -90,7 +86,7 @@ class TestLinkedList {
     }
 
     @Test
-    fun testLinkedListContainsAll() {
+    fun linkedListContainsAll() {
         assert(testLinkedList.toString() == "1 -> 2 -> 3") // before
         val list2 = LinkedList<Int>()
         list2.push(1)
@@ -117,6 +113,12 @@ class TestLinkedList {
         testMutableLinkedList.add(4)
         testMutableLinkedList.retainAll(listOf(3, 4, 5))
         assert(testMutableLinkedList.toString() == "5 -> 3 -> 4")
+    }
+
+    @Test
+    fun testChallenge1() {
+        assert(testLinkedList.toString() == "1 -> 2 -> 3") // before
+        assert(testLinkedList.printInReverse() == "3 <- 2 <- 1")
     }
 
 }
