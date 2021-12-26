@@ -73,8 +73,19 @@ class TestLinkedList {
         list.push(2)
         list.push(1)
         assert(list.toString() == "1 -> 2 -> 3") // before
-        val removedValue = list.removeAfter(list.nodeAt(1)!!)
+        val removedValue = list.removeAfter(list.nodeAt(0)!!)
         assert(list.toString() == "1 -> 3") // after
         assert(removedValue == 2) // removed value
+    }
+
+    @Test
+    fun testIterableLinkedList() {
+        val list = LinkedList<Int>()
+        list.push(3)
+        list.push(2)
+        list.push(1)
+        for (item in list) {
+            continue // I just need to test iterating over the list
+        }
     }
 }
