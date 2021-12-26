@@ -26,17 +26,6 @@ fun <T : Any> Node<T>.printInReverseHelper() {
     stringBuilder.append(this.value.toString())
 }
 
-var counter = 0
-
-// find the length of the list
 fun <T : Any> LinkedList<T>.printMiddleNode(): String {
-    println(this.size)
-    this.nodeAt(0)?.printMiddleNodeHelper()
-    val middleNode = counter / 2
-    return this.nodeAt(middleNode)?.value.toString()
-}
-
-// increment counter
-fun <T : Any> Node<T>.printMiddleNodeHelper() {
-    this.next?.printMiddleNodeHelper().let { counter++ }
+    return this.nodeAt(size/2)?.value.toString()
 }

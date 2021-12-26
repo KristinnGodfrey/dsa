@@ -116,9 +116,19 @@ class TestLinkedList {
     }
 
     @Test
+    // print the list reversed
     fun testChallenge1() {
         assert(testLinkedList.toString() == "1 -> 2 -> 3") // before
         assert(testLinkedList.printInReverse() == "3 <- 2 <- 1")
+    }
+
+    @Test
+    // print the middle node of the list
+    fun testChallenge2() {
+        assert(testLinkedList.toString() == "1 -> 2 -> 3") // before
+        assert(testLinkedList.printMiddleNode() == "2")
+        testLinkedList.append(4)
+        assert(testLinkedList.printMiddleNode() == "3")
     }
 
 }

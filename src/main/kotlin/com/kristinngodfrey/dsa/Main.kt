@@ -7,7 +7,7 @@ fun main() {
     list.add(3)
     list.add(4)
     list.add(5)
-    list.printInReverse()
+//    list.printInReverse()
     println(list)
-    println(list.printMiddleNode())
+//    println(list.printMiddleNode())
 }
