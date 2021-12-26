@@ -2,7 +2,7 @@ package com.kristinngodfrey.dsa
 
 class LinkedListIterator<T : Any>(
     private val list: LinkedList<T>
-) : Iterator<T> {
+) : Iterator<T>, MutableIterator<T>{
     private var index = 0
     private var lastNode: Node<T>? = null
 
