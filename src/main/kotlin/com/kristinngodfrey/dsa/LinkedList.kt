@@ -1,6 +1,6 @@
 package com.kristinngodfrey.dsa
 
-class LinkedList<T : Any> : Iterable<T>, Collection<T>, MutableIterable<T> {
+class LinkedList<T : Any> : Iterable<T>, Collection<T>, MutableIterable<T>, MutableCollection<T> {
     private var head: Node<T>? = null
     private var tail: Node<T>? = null
     override var size = 0
@@ -123,5 +123,56 @@ class LinkedList<T : Any> : Iterable<T>, Collection<T>, MutableIterable<T> {
             }
         }
         return true
+    }
+
+    // Since the LinkedList doesn’t have a fixed size, add() and addAll() are always
+    // successful and need to return true
+    override fun add(element: T): Boolean {
+        append(element)
+        return true
+    }
+
+    override fun addAll(elements: Collection<T>): Boolean {
+        elements.forEach { append(it) }
+        return true
+    }
+
+    override fun clear() {
+        head = null
+        tail = null
+        size = 0
+    }
+
+    override fun remove(element: T): Boolean {
+        val iterator = iterator()
+        while (iterator.hasNext()){
+            if (iterator.next() == element) {
+                iterator.remove()
+                return true
+            }
+        }
+        return false
+    }
+
+    // The return value of removeAll is true if any elements were removed.
+    override fun removeAll(elements: Collection<T>): Boolean {
+        var result = false
+        elements.forEach {
+            result = result || remove(it)
+        }
+        return result
+    }
+
+    // RetainAll removes any elements in the list besides the ones passed in as the parameter
+    override fun retainAll(elements: Collection<T>): Boolean {
+        var result = false
+        val iterator = this.iterator()
+        while (iterator.hasNext()) {
+            if (!elements.contains(iterator.next())) {
+                iterator.remove()
+                result = true
+            }
+        }
+        return result
     }
 }
