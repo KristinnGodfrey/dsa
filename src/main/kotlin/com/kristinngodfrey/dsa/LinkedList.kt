@@ -1,12 +1,12 @@
 package com.kristinngodfrey.dsa
 
-class LinkedList<T : Any> : Iterable<T> {
+class LinkedList<T : Any> : Iterable<T>, Collection<T> {
     private var head: Node<T>? = null
     private var tail: Node<T>? = null
-    var size = 0
+    override var size = 0
         private set
 
-    fun isEmpty(): Boolean = size == 0
+    override fun isEmpty(): Boolean = size == 0
 
     override fun toString(): String {
         if (isEmpty()) {
@@ -107,4 +107,21 @@ class LinkedList<T : Any> : Iterable<T> {
     override fun iterator(): Iterator<T> =
         LinkedListIterator(this)
 
+    override fun contains(element: T): Boolean {
+        this.forEach {
+            if (it == element) {
+                return true
+            }
+        }
+        return false
+    }
+
+    override fun containsAll(elements: Collection<T>): Boolean {
+        elements.forEach { element ->
+            if (!contains(element)) {
+                return false
+            }
+        }
+        return true
+    }
 }

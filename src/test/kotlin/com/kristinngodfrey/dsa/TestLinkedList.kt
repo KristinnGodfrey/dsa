@@ -88,4 +88,31 @@ class TestLinkedList {
             continue // I just need to test iterating over the list
         }
     }
+
+    @Test
+    fun testLinkedListContains() {
+        val list = LinkedList<Int>()
+        list.push(3)
+        list.push(2)
+        list.push(1)
+        assert(list.contains(1))
+        assert(list.contains(2))
+        assert(list.contains(3))
+        assert(!list.contains(4))
+    }
+
+    @Test
+    fun testLinkedListContainsAll() {
+        val list = LinkedList<Int>()
+        list.push(3)
+        list.push(2)
+        list.push(1)
+        val list2 = LinkedList<Int>()
+        list2.push(1)
+        list2.push(2)
+        list2.push(3)
+        assert(list.containsAll(list2))
+        list2.push(4)
+        assert(!list.containsAll(list2))
+    }
 }
