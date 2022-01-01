@@ -1,6 +1,5 @@
 package com.kristinngodfrey.dsa
 
-import kotlin.math.ceil
 
 infix fun String.example(function: () -> Unit) {
     println("---Example of $this---")
@@ -8,24 +7,24 @@ infix fun String.example(function: () -> Unit) {
     println()
 }
 
+// Linked Lists challenge 1
 val stringBuilder = StringBuilder()
 
 fun <T : Any> LinkedList<T>.printInReverse(): String {
-    this.nodeAt(0)
-        ?.printInReverseHelper()
+    this.nodeAt(0)?.printInReverseHelper()
     return stringBuilder.toString()
 }
 fun <T : Any> Node<T>.printInReverseHelper() {
-    this.next
-        ?.printInReverseHelper()
-    // 1
+    this.next?.printInReverseHelper()
+
     if (this.next != null) {
         stringBuilder.append(" <- ")
     }
-    // 2
+
     stringBuilder.append(this.value.toString())
 }
 
-fun <T : Any> LinkedList<T>.printMiddleNode(): String {
-    return this.nodeAt(size/2)?.value.toString()
-}
+// Linked Lists challenge 2
+fun <T : Any> LinkedList<T>.printMiddleNode(): String =
+    this.nodeAt(size/2)?.value.toString()
+
